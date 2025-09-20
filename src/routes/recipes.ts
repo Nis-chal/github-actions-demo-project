@@ -1,6 +1,6 @@
 import { getRecipe } from "../controllers/recipes/getRecipe";
 
-
+// comments route
 const express = require('express');
 const router = express.Router();
 
