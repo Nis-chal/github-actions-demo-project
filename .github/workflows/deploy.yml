@@ -1,0 +1,23 @@
+name: Deploy Project
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node_version: 20
+      - run: npm ci
+      - run: npm run build
+      - name: Get SSH Key and permissions
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH.PRIVATE_KEY }}" > ~/..sh/id_rsa && chmod  600 ~/..sh/id_rsa
+      - name: Deploy using secrets.SSH.PRIVATE_KEY
+        run: scp
